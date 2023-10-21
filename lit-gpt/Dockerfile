@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install -y git
 RUN pip install -r requirements.txt huggingface_hub sentencepiece tokenizers bitsandbytes scipy
 
 # some huggingface_hub versions require that the target dir exists
-RUN mkdir -p checkpoints/openlm-research/open_llama_3b
+RUN mkdir -p checkpoints/qiyueqi/mistral_lora
 # get open-llama weights: https://github.com/Lightning-AI/lit-gpt/blob/main/tutorials/download_openllama.md
-RUN python scripts/download.py --repo_id openlm-research/open_llama_3b
-RUN python scripts/convert_hf_checkpoint.py --checkpoint_dir checkpoints/openlm-research/open_llama_3b
+RUN python scripts/download.py --repo_id qiyueqi/mistral_lora
+RUN python scripts/convert_hf_checkpoint.py --checkpoint_dir checkpoints/qiyueqi/mistral_lora
 
 # Copy over single file server
 COPY ./main.py /submission/main.py
